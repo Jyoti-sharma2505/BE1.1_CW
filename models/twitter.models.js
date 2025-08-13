@@ -1,15 +1,15 @@
 const mongoose = require("mongoose");
 
 const TwitterSchema = new mongoose.Schema({
-    userName: String,
-    profilePic:String,
+    username: String,
+    profilePicUrl:String,
     fullName:String,
     bio:String,
     companyName:String,
-    city:String,
-    portfolioLink:String,
+    location:String,
+    portfolioUrl:String,
     handle:String,
-    followersCount:Number,
+    followerCount:Number,
     followingCount:Number,
     isOnline : Boolean
 })
