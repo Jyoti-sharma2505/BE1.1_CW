@@ -5,12 +5,12 @@ const MovieSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    releseYear:{
+    releaseYear:{
         type:Number,
         required:true
     },
     genre:[{
-        type:String,
+        type:[String],
         enum:["Action","Drama","Comedy","Romance","Thriler","Sports","Musical","Others"],
     }],
     director:{
@@ -20,7 +20,7 @@ const MovieSchema = new mongoose.Schema({
     actors:[{
     type:String
     }],
-    languge:{
+    language:{
         type:String,
         required:true,
     },
@@ -43,7 +43,7 @@ const MovieSchema = new mongoose.Schema({
     posterUrl:{
         type:String
     },
-    trailorUrl:{
+    trailerUrl:{
         type:String
     }
 },{
