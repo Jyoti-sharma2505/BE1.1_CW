@@ -6,35 +6,60 @@ const Twitter = require("./models/twitter.models")
 // const { release } = require("os");
 initializeDatabase();
 
-const jsonData = fs.readFileSync("movies.json","utf-8")
+// const jsonData = fs.readFileSync("movies.json","utf-8")
 const jsonData1=fs.readFileSync("profile.json","utf-8")
 
-const moviesData = JSON.parse(jsonData);
+// const moviesData = JSON.parse(jsonData);
 const profileData = JSON.parse(jsonData1)
 
-function seedData(){
-    try{
-      for(const movieData of moviesData){
-        const newMovie = new Movie({
-            title:movieData.title,
-            releaseYear:movieData.releaseYear,
-            genre:movieData.genre,
-            director:movieData.director,
-            actors:movieData.actors,
-            language:movieData.language,
-            country:movieData.country,
-            rating:movieData.rating,
-            plot:movieData.plot,
-            awards:movieData.awards,
-            posterUrl:movieData.posterUrl,
-            trailerUrl:movieData.trailerUrl,
-        })
-       newMovie.save();
-      }
-    }catch(error){
-    console.log("Error seeding the data",error)
-    }
+// function seedData(){
+//     try{
+//       for(const movieData of moviesData){
+//         const newMovie = new Movie({
+//             title:movieData.title,
+//             releaseYear:movieData.releaseYear,
+//             genre:movieData.genre,
+//             director:movieData.director,
+//             actors:movieData.actors,
+//             language:movieData.language,
+//             country:movieData.country,
+//             rating:movieData.rating,
+//             plot:movieData.plot,
+//             awards:movieData.awards,
+//             posterUrl:movieData.posterUrl,
+//             trailerUrl:movieData.trailerUrl,
+//         })
+//        newMovie.save();
+//       }
+//     }catch(error){
+//     console.log("Error seeding the data",error)
+//     }
+// }
+
+const newMovie = {
+    title: "New Movie",
+    releaseYear: 2025,
+    genre: [ "Drama"],
+    director: "Aditya Roy Chopra",
+    actors: ["Actor1", "Actore2"],
+    language: "Hindi",
+    country: "India",
+    rating: 5.1,
+    plot: "A young man and woman fall in love on a Australia trip.",
+    awards: "IFA Filmfare Awards",
+    posterUrl: "https://example.com/new-poster1.jpg",
+    trailerUrl: "https://example.com/mew-trailer1.mp4"
 }
+async function createMovie(newMovie){
+  try{
+    const movie=new Movie(newMovie);
+    const saveMovie =await movie.save()
+    console.log("New movie data",saveMovie)
+  }catch(error){
+    throw error
+}
+}
+createMovie(newMovie)
 
 function seedProfile(){
     try{
@@ -60,4 +85,4 @@ function seedProfile(){
 
 seedProfile()
 
-seedData()
+// seedData()
