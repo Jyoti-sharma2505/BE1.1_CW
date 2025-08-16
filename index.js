@@ -62,6 +62,47 @@ async function createMovie(newMovie){
 }
 }
 // createMovie(newMovie)
+
+//cw Work find the update value
+async function updateTheRating(movieId,updaterating){
+  try{
+  const update=await Movie.findByIdAndUpdate(movieId,updaterating,{new:true});
+  console.log(update);
+  }catch(error){
+    throw error;
+  }
+}
+// updateTheRating("689d7e12afedc9d9c29422f5",{rating:8.5})
+async function updateByTitle(movieTitle,updateYear){
+    try{
+    const update = await Movie.findOneAndUpdate({title:movieTitle},updateYear,{new:true});
+    console.log(update)
+    }catch(error){
+        throw error;
+    }
+}
+// updateByTitle("PK",{releaseYear:2015});
+//BE2.4_CW 
+async function deleteById(movieId){
+    try{
+     const deleteId =await Movie.findByIdAndDelete(movieId ,{new:true});
+     console.log(deleteId)
+    }catch(error){
+        console.log("Nor catch find",error);
+    }
+}
+// deleteById("689f17dccfed2020562c97c7");
+//2:
+async function deleteByTitle(movieTitle){
+    try{
+        const deleteName = await Movie.findOneAndDelete({title:movieTitle});
+        console.log(deleteName)
+    }catch(error){
+        console.log("Error for delete",error)
+    }
+}
+// deleteByTitle("Dilwale Dulhania Le Jayenge")
+
 //Find the one data in whole array the use findOne.
 
 async function readMovieDirector(movieTitle){
@@ -73,7 +114,7 @@ async function readMovieDirector(movieTitle){
         throw error
     }
 }
-readMovieDirector("Bahubali: The Beginning")
+// readMovieDirector("Bahubali: The Beginning")
 
 const newRestaurant = {
   name: "Yo China",
@@ -173,6 +214,28 @@ async function readAllCuision(){
 }
 // readAllCuision();
 
+//Hw question 1/2:
+async function updateIdResturant(movieid,updateRating){
+    try{
+        const update = await Resturant.findByIdAndUpdate(movieid,updateRating,{new:true});
+        console.log(update);
+    }catch(error){
+        throw error;
+    }
+}
+// updateIdResturant("689f1c96f68c6dd52bb6d39a",{name:"Som Sarovar"});
+
+//Question 3:
+async function updatePhone(moviePhone,udateData){
+    try{
+  const update = await Resturant.findOneAndUpdate({phoneNumber:moviePhone},udateData,{new:true});
+  console.log(update);
+    }catch(error){
+        throw error
+    }
+}
+// updatePhone("+1288997392",{isDeliveryAvailable :true});
+
 
 const newHotel = {
   name: "Sunset Resort",
@@ -206,6 +269,27 @@ async function createHotel(newHotel){
     }
 }
 // createHotel(newHotel)
+
+//BE2.4_HW2 Question 1:deleteHotelById 
+async function deleteHotelById (hotelId){
+    try{
+  const deleteById = await Hotel.findByIdAndDelete(hotelId);
+    }catch(error){
+        throw error;
+    }
+}
+// deleteHotelById ("689f247009d888d186c7f9ec");
+//deleteHotelByPhoneNumber Question :2
+async function deleteHotelByPhoneNumber (hotelPhone){
+    try{  
+  const deletePhone = await Hotel.findOneAndDelete({phoneNumber:hotelPhone});
+  console.log(deletePhone)
+    }catch(error){
+        throw error;
+    }
+}
+deleteHotelByPhoneNumber ("+1234555890")
+
 //Question 3:
 
 async function readAllHotel() {
@@ -289,7 +373,58 @@ async function readAllPhone(number){
         throw error
     }
 }
-readAllPhone("+1299655890")
+// readAllPhone("+1299655890");
+//BE2.4_HW1 Question 1:
+async function deleteRestaurantById (resturantId){
+    try{
+  const deleteId = await Resturant.findByIdAndDelete(resturantId)
+    }catch(error){
+        throw error;
+    }
+}
+// deleteRestaurantById ("689f1bd941d73d55370dc73e");
+
+//Question 2:deleteRestaurantByName 
+async function deleteRestaurantByName (resturantName){
+    try{
+  const deleteName = await Resturant.findOneAndDelete({name:resturantName});
+  console.log(deleteName)
+    }catch(error){
+        throw error;
+    }
+}
+deleteRestaurantByName ("Som Sarovar")
+
+//Hw2 Question 1:
+async function updateHotel(hotelId,updateValue){
+    try{
+  const update = await Hotel.findByIdAndUpdate(hotelId,updateValue,{new:true});
+  console.log(update)
+    }catch(error){
+        throw error;
+    }
+}
+//  updateHotel("689f247009d888d186c7f9ec",{checkOutTime:"11 Am"})
+//Question 2:
+async function updateByName(hotelName,updateRating){
+   try{
+  const update = await Hotel.findOneAndUpdate({name:hotelName},updateRating,{new:true});
+  console.log(update);
+   }catch(error){
+    throw error;
+   }
+}
+// updateByName("Sunset Resort",{rating:4.2});
+//Question 3:
+async function updatePhone(hotelPhone,updatePhone){
+    try{
+   const update= await Hotel.findOneAndUpdate({phoneNumber:hotelPhone},updatePhone,{new:true});
+   console.log(update)
+    }catch(error){
+        throw error;
+    }
+}
+updatePhone("+1299655890",{phoneNumber:"+1997687392"})
 
 function seedProfile(){
     try{
